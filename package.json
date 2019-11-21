@@ -19,6 +19,11 @@
     "@angular/platform-browser": "~8.2.7",
     "@angular/platform-browser-dynamic": "~8.2.7",
     "@angular/router": "~8.2.7",
+    "@caliatys/cognito-service": "^1.5.1",
+    "amazon-cognito-identity-js": "^3.2.0",
+    "aws-amplify": "^1.2.4",
+    "aws-amplify-angular": "^3.1.4",
+    "ngx-toastr": "^11.2.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

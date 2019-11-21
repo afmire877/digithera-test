@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-digithera-test-dev-120800-authRole",
+            "UnauthRoleArn": "arn:aws:iam::408840334386:role/amplify-digithera-test-dev-120800-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::408840334386:role/amplify-digithera-test-dev-120800-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-digithera-test-dev-120800-deployment",
+            "UnauthRoleName": "amplify-digithera-test-dev-120800-unauthRole",
+            "StackName": "amplify-digithera-test-dev-120800",
+            "StackId": "arn:aws:cloudformation:us-east-1:408840334386:stack/amplify-digithera-test-dev-120800/901d5170-0c57-11ea-a4e6-0e1c7f65113d"
+        },
+        "categories": {
+            "auth": {
+                "digitheratest970def45": {}
+            }
+        }
+    }
+}

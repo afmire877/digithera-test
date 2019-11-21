@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth.component';
 import { GameComponent } from './game/game.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { GameComponent } from './game/game.component';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    AuthComponent,
     GameComponent
   ],
   imports: [

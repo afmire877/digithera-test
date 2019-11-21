@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"digitheratest970def45": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
