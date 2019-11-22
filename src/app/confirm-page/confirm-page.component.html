@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>Confirm Code</mat-card-title>
+  <mat-card-content>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Confirmation Code" formControlName="code">
+    </mat-form-field>
+  </p>
+  <p *ngIf="error" class="error">
+    {{ error }}
+  </p>
+
+  <div class="button">
+    <button type="submit" mat-button> Confirm Code </button>
+  </div>
+
+  </form>
+  </mat-card-content>
+  </mat-card>
