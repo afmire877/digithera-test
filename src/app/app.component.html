@@ -4,15 +4,17 @@
   <nav>
     <ul class='navbar'>
       <li routerLink="">Home</li>
-      <li routerLink="/login">Sign in</li>
-      <li routerLink="/signup">Sign Up</li>
+      <div *ngIf="!currentUser">
+        <li  routerLink="/login">Sign in</li>
+        <li  routerLink="/signup">Sign Up</li>
+      </div>
+
       <li routerLink="/game">Game</li>
+      <li *ngIf="currentUser" (click)="logout()">Logout</li>
     </ul>
   </nav>
 </header>
 
 <div class="container">
-  <h1>{{title}}</h1>
-
   <router-outlet></router-outlet>
 </div>

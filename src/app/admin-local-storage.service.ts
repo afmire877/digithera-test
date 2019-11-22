@@ -14,6 +14,9 @@ export class AdminLocalStorageService {
   getToken = () =>  {
     return localStorage.getItem('token');
   }
+  deleteToken = () =>  {
+    return localStorage.setItem('token', '');
+  }
 
   constructor() { }
 

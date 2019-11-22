@@ -25,30 +25,30 @@ export class TokenInterceptorService implements HttpInterceptor {
     private router: Router,
     private toastr: ToastrService
   ) {}
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authData = this.localStorage.getToken();
     let requestItem = req;
     if (authData) {
       requestItem = req.clone({
-        headers: req.headers.set('Authorization', authData.jwtToken)
+        // headers: req.headers.set('Authorization', authData.jwtToken)
       });
     }
 
-    return next.handle(requestItem).do((event: HttpEvent<any>) => {
-      if (event instanceof HttpResponse) {
-        //letting it pass
-      }
-    }, (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-                this.localStorage.deleteToken();
-                this.toastr.error('Please login again.', 'Session ended');
-                this.router.navigate(['/']);
-            }
+    return next.handle(requestItem).do(
+      (event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          //letting it pass
         }
-    });
+      },
+      (err: any) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.localStorage.deleteToken();
+            this.toastr.error('Please login again.', 'Session ended');
+            this.router.navigate(['/']);
+          }
+        }
+      }
+    );
   }
 }

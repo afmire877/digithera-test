@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminLocalStorageService } from '../app/admin-local-storage.service';
+import { UserService } from './auth/user.service';
+import { CognitoService } from './auth/cognito.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,14 @@ import { AdminLocalStorageService } from '../app/admin-local-storage.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  constructor(private service: AdminLocalStorageService) {}
-  title = 'digithera-test';
-  today;
+  currentUser = null;
+  logout() {
+    this.user.logoutUser();
+    this.currentUser = null;
+  }
+  constructor(private service: AdminLocalStorageService, private user: UserService, public cognito: CognitoService) {}
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
-    this.today = this.service.getToken()
+    this.currentUser = this.cognito.getCurrentUser();
   }
-
 }
