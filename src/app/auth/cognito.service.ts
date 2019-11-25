@@ -16,8 +16,8 @@ export class CognitoService {
   public static ClientId = environment.ClientId;
 
   public poolData: any = {
-    UserPoolId: 'us-east-2_FJiWyoOid',
-    ClientId: '1jmf69kh39bhm0326hnn0ni6b'
+    UserPoolId: 'us-east-1_qRdMI4QGp',
+    ClientId: '193l2qgeu9o51qpmboddhda5kk'
   };
 
   constructor() {}

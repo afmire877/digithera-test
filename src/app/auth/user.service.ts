@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { CognitoService } from './cognito.service';
 import { AdminLocalStorageService } from '../admin-local-storage.service';
 import { CognitoUserAttribute, AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   constructor(public cognito: CognitoService, public localStorage: AdminLocalStorageService) {}
-
+  registeringUser;
+  // public CurrentRegistering = this.registeringUser.asObservable();
   loginUser({ Username, Password }) {
     const authenticationData = {
       Username,
@@ -26,7 +26,6 @@ export class UserService {
       onSuccess: result => {
         console.log(result);
         const accessToken = result.getAccessToken().getJwtToken();
-        /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer*/
 
         // const idToken = result.idToken.jwtToken;
       },
@@ -34,6 +33,15 @@ export class UserService {
       onFailure: err => {
         console.log(err);
       }
+    });
+  }
+  getCurrentToken() {
+    return this.cognito.getCurrentUser().getSession((err, session) => {
+      if (err) {
+        console.log(err);
+        return null;
+      }
+      return session.getIdToken().getJwtToken();
     });
   }
 
@@ -60,33 +68,31 @@ export class UserService {
     }
   }
 
-  registerUser({ username, password, email }) {
+  registerUser({ Username, Password, Email }, callback) {
     const userPool = this.cognito.getUserPool();
-
+    let cognitoUser = null;
+    let err;
     const attributeList = [];
 
     const dataEmail = {
       Name: 'email',
-      Value: email
+      Value: Email
     };
 
     const attributeEmail = new CognitoUserAttribute(dataEmail);
 
     attributeList.push(attributeEmail);
 
-    userPool.signUp(username, password, attributeList, null, (err, result) => {
-      if (err) {
-        console.log(err.message);
-        return;
-      }
-      const cognitoUser = result.user;
-      const code = prompt('Enter code from email');
-      console.log('user name is ' + cognitoUser.getUsername());
+    userPool.signUp(Username, Password, attributeList, null, (error, result) => {
+      callback(error, result);
     });
   }
-  confirmUser(code) {
-    const userPool = this.cognito.getUserPool();
-    const cognitoUser = userPool.getCurrentUser();
+  confirmUser(code, username) {
+    const userData = {
+      Username: username,
+      Pool: this.cognito.getUserPool()
+    };
+    const cognitoUser = new CognitoUser(userData);
     cognitoUser.confirmRegistration(code, true, (err, result) => {
       if (err) {
         throw Error(err.message);

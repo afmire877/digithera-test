@@ -12,7 +12,7 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmPageComponent } from './confirm-page/confirm-page.component';
-
+import { AuthGuardService } from './auth/auth-guard.service';
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, GameComponent, ConfirmPageComponent],
   imports: [
@@ -23,7 +23,7 @@ import { ConfirmPageComponent } from './confirm-page/confirm-page.component';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
