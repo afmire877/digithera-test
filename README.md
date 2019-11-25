@@ -1,5 +1,14 @@
 # DigitheraTest
 
+## Challenges I faced
+
+This project was the first time I used angular. but I was surprised how robust and how everything was included such as the routing and CLI.
+
+My Biggest challenge was adding Cognito and making it available on the routes. I chose to write a couple of services to handle the auth.
+
+I have experience mainly in React so many concepts were transferrable and I understood the mechanics of the framework pretty quickly.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 
 ## Development server
